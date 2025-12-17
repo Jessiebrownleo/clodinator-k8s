@@ -6,7 +6,7 @@ metadata:
   labels:
     app: identity-service
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -36,27 +36,26 @@ spec:
           value: "http://eureka-server:8761/eureka/"
         - name: SERVER_PORT
           value: "8080"
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
         livenessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 40
-          periodSeconds: 10
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 40
-          periodSeconds: 10
-        env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: "dev"
-        - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-          value: "http://eureka-service:8761/eureka/"
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
         resources:
           requests:
-            memory: "256Mi"
+            memory: "300Mi"
             cpu: "250m"
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "768Mi"
+            cpu: "600m"

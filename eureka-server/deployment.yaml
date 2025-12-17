@@ -6,7 +6,7 @@ metadata:
   labels:
     app: eureka-server
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -29,17 +29,17 @@ spec:
           httpGet:
             path: /actuator/health
             port: 8761
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 60
+          periodSeconds: 15
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8761
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 60
+          periodSeconds: 15
         env:
         - name: SPRING_PROFILES_ACTIVE
-          value: "dev"
+          value: "prod"
         resources:
           requests:
             memory: "256Mi"
