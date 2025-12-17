@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infrastructure-service
+  namespace: default
+  labels:
+    app: infrastructure-service
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: infrastructure-service
+  template:
+    metadata:
+      labels:
+        app: infrastructure-service
+    spec:
+      containers:
+      - name: infrastructure-service
+        image: soben10/infrastructure-service:latest
+        ports:
+        - containerPort: 7082
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 7082
+          initialDelaySeconds: 40
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 7082
+          initialDelaySeconds: 40
+          periodSeconds: 10
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "dev"
+        - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+          value: "http://eureka-service:8761/eureka/"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"

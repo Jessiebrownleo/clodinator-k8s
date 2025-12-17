@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: infrastructure-service
+  namespace: default
+  labels:
+    app: infrastructure-service
+spec:
+  selector:
+    app: infrastructure-service
+  ports:
+    - protocol: TCP
+      port: 7082
+      targetPort: 7082
+  type: ClusterIP
