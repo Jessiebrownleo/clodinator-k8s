@@ -38,20 +38,26 @@ spec:
           value: "http://identity-service:8080"
         - name: SPRING_PROFILES_ACTIVE
           value: "prod"
+        - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+          value: "*"
+        - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+          value: "always"
         livenessProbe:
           httpGet:
             path: /actuator/health
             port: 8081
-          initialDelaySeconds: 60
-          periodSeconds: 15
-          timeoutSeconds: 5
+          initialDelaySeconds: 180
+          periodSeconds: 20
+          timeoutSeconds: 10
+          failureThreshold: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8081
-          initialDelaySeconds: 60
-          periodSeconds: 15
-          timeoutSeconds: 5
+          initialDelaySeconds: 180
+          periodSeconds: 20
+          timeoutSeconds: 10
+          failureThreshold: 5
         resources:
           requests:
             memory: "300Mi"
