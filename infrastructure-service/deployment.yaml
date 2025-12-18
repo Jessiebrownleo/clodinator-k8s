@@ -48,6 +48,7 @@ spec:
           value: "*"
         - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
           value: "always"
+        livenessProbe:
           httpGet:
             path: /actuator/health
             port: 7082
