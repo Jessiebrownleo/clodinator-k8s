@@ -34,6 +34,8 @@ spec:
           value: "postgres"
         - name: REDIS_HOST
           value: "redis"
+        - name: REDIS_PORT
+          value: "6379"
         - name: KAFKA_BOOTSTRAP_SERVERS
           value: "kafka:9092"
         - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
