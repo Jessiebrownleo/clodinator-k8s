@@ -20,6 +20,10 @@ spec:
       labels:
         app: gateway-service
     spec:
+      initContainers:
+      - name: wait-for-identity
+        image: busybox:1.36
+        command: ['sh', '-c', 'until nc -z identity-service 8080; do echo waiting for identity-service; sleep 2; done;']
       containers:
       - name: gateway-service
         image: soben10/gateway-server:latest
