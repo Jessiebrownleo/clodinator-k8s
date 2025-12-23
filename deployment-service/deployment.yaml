@@ -42,17 +42,31 @@ spec:
           value: "postgres"
         - name: SPRING_DATASOURCE_PASSWORD
           value: "postgres"
+        - name: DB_URL
+          value: "jdbc:postgresql://postgres:5432/production"
+        - name: DB_USERNAME
+          value: "postgres"
+        - name: DB_PASSWORD
+          value: "postgres"
         - name: SPRING_DATA_REDIS_HOST
           value: "redis"
         - name: SPRING_DATA_REDIS_PORT
           value: "6379"
         - name: SPRING_DATA_REDIS_PASSWORD
           value: "123456"
+        - name: REDIS_HOST
+          value: "redis"
+        - name: REDIS_PORT
+          value: "6379"
         - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+          value: "kafka:9092"
+        - name: KAFKA_BOOTSTRAP_SERVERS
           value: "kafka:9092"
         - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
           value: "http://eureka-server:8761/eureka/"
         - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+          value: "http://identity-service:8080"
+        - name: JWT_ISSUER_URI
           value: "http://identity-service:8080"
         - name: SPRING_PROFILES_ACTIVE
           value: "prod"
