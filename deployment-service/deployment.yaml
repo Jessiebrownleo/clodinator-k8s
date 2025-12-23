@@ -64,6 +64,10 @@ spec:
           value: "kafka:9092"
         - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
           value: "http://eureka-server:8761/eureka/"
+        - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+          value: "http://eureka-server:8761/eureka/"
+        - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+          value: "true"
         - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
           value: "http://identity-service:8080"
         - name: JWT_ISSUER_URI
