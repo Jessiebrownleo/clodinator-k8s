@@ -72,6 +72,8 @@ spec:
           value: "true"
         - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
           value: "http://identity-service:8080"
+        - name: K8S_MASTER_URL
+          value: "https://172.17.2.22:6443"
         - name: SPRING_PROFILES_ACTIVE
           value: "prod"
         - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
